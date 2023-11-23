@@ -113,28 +113,16 @@ func sendLogToRabbitMQ(logMsg LogMessage) error {
 	}
 	defer ch.Close()
 
-	q, err := ch.QueueDeclare(
-		queue, // Nombre de la cola
-		true,  // Durabilidad
-		false, // Eliminar cuando no hay consumidores
-		false, // Exclusividad
-		false, // No esperar a confirmación
-		nil,   // Argumentos adicionales
-	)
-	if err != nil {
-		return err
-	}
-
 	jsonBody, err := json.Marshal(logMsg)
 	if err != nil {
 		return err
 	}
 
 	err = ch.Publish(
-		"",     // Intercambio
-		q.Name, // Cola
-		false,  // Mandar como persistente
-		false,  // Mandar como publicación inmediata
+		"",    // Intercambio
+		queue, // Cola
+		false, // Mandar como persistente
+		false, // Mandar como publicación inmediata
 		amqp.Publishing{
 			ContentType: "application/json",
 			Body:        jsonBody,
