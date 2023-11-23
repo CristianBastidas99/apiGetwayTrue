@@ -1,0 +1,15 @@
+2023/11/22 22:22:03 API Gateway running on port 8080
+2023/11/22 22:23:20 API Gateway running on port 8080
+2023/11/22 22:26:04 Request: POST /auth/admin
+2023/11/22 22:26:06 Error sending log message to RabbitMQ: dial tcp: lookup rabbitmq: no such host
+2023/11/22 22:26:12 Error sending log message to RabbitMQ: dial tcp: lookup rabbitmq: no such host
+2023/11/22 22:26:12 Request duration: 8.1661304s
+2023/11/22 22:26:47 API Gateway running on port 8080
+2023/11/22 22:26:59 Request: POST /auth/admin
+2023/11/22 22:27:02 Error sending log message to RabbitMQ: dial tcp: lookup rabbitmq: no such host
+2023/11/22 22:27:07 Error sending log message to RabbitMQ: dial tcp: lookup rabbitmq: no such host
+2023/11/22 22:27:07 Request duration: 8.1186054s
+2023/11/22 22:42:23 Configuración del servidor...
+2023/11/22 22:42:23 API Gateway running on port 8080
+2023/11/22 22:45:18 Configuración del servidor...
+2023/11/22 22:45:18 API Gateway running on port 8080
