@@ -203,6 +203,96 @@ func RegistrationWebhookHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("RegistrationWebhook request logged")
 }
 
+func HealthCheckHandler(w http.ResponseWriter, r *http.Request) {
+	url := fmt.Sprintf("%s/health", ProfileAPIURL) // Reemplaza YourServiceURL por la URL del servicio que deseas verificar
+
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Realizar la solicitud al servicio para verificar su estado
+	resp, err := http.Get(url)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	responseBody, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Retornar la respuesta del servicio al cliente
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	w.Write(responseBody)
+
+	log.Println("HealthCheck request logged")
+}
+
+func ReadyCheckHandler(w http.ResponseWriter, r *http.Request) {
+	url := fmt.Sprintf("%s/health/ready", ProfileAPIURL) // Reemplaza YourServiceURL por la URL del servicio que deseas verificar
+
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Realizar la solicitud al servicio para verificar su estado
+	resp, err := http.Get(url)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	responseBody, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Retornar la respuesta del servicio al cliente
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	w.Write(responseBody)
+
+	log.Println("ReadyCheck request logged")
+}
+
+func LiveCheckHandler(w http.ResponseWriter, r *http.Request) {
+	url := fmt.Sprintf("%s/health/live", ProfileAPIURL) // Reemplaza YourServiceURL por la URL del servicio que deseas verificar
+
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Realizar la solicitud al servicio para verificar su estado
+	resp, err := http.Get(url)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	responseBody, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Retornar la respuesta del servicio al cliente
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(resp.StatusCode)
+	w.Write(responseBody)
+
+	log.Println("LiveCheck request logged")
+}
+
 func GetEmailHash(email string) uint32 {
 	hasher := sha256.New()
 	hasher.Write([]byte(email))

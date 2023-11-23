@@ -28,6 +28,11 @@ func main() {
 	r.HandleFunc("/api/profile/delete/{email}", handlers.DeleteProfileHandler).Methods("DELETE")
 	r.HandleFunc("/api/profile/registration-webhook", handlers.RegistrationWebhookHandler).Methods("POST")
 
+	// Manejadores de estado
+	r.HandleFunc("/health", handlers.HealthCheckHandler).Methods("GET")
+	r.HandleFunc("/health/ready", handlers.ReadyCheckHandler).Methods("GET")
+	r.HandleFunc("/health/live", handlers.LiveCheckHandler).Methods("GET")
+
 	// Configuración del logger
 	logFile, err := logger.SetupLogFile("api_gateway_logs.txt")
 	if err != nil {
